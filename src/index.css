@@ -1,13 +1,121 @@
-body {
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=Fira+Code:wght@300;400;500&display=swap');
+
+:root {
+  --bg-dark: #0a192f;
+  --bg-darker: #020c1b;
+  --bg-light: #112240;
+  
+  --primary: #64ffda;
+  --secondary: #bd34fe;
+  --text-main: #e6f1ff;
+  --text-muted: #8892b0;
+  --text-accent: #ccd6f6;
+  
+  --font-main: 'Inter', sans-serif;
+  --font-mono: 'Fira Code', monospace;
+  
+  --nav-height: 80px;
+  --transition: all 0.25s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+
+* {
+  box-sizing: border-box;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  background-color: var(--bg-dark);
+  color: var(--text-main);
+  font-family: var(--font-main);
+  line-height: 1.6;
+  overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+::-webkit-scrollbar {
+  width: 10px;
 }
+
+::-webkit-scrollbar-track {
+  background: var(--bg-darker);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--text-muted);
+  border-radius: 5px;
+  border: 2px solid var(--bg-darker);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--primary);
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+  transition: var(--transition);
+}
+
+ul {
+  list-style: none;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 0 0 1rem 0;
+  font-weight: 700;
+  color: var(--text-main);
+  line-height: 1.1;
+}
+
+p {
+  margin-bottom: 1.5rem;
+  color: var(--text-muted);
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.section-title {
+  display: flex;
+  align-items: center;
+  margin-bottom: 3rem;
+  width: 100%;
+  white-space: nowrap;
+  font-size: clamp(1.5rem, 5vw, 2.5rem);
+}
+
+.section-title::before {
+  content: '0' counter(section) '.';
+  color: var(--primary);
+  font-family: var(--font-mono);
+  font-size: clamp(1rem, 3vw, 1.5rem);
+  font-weight: 400;
+  margin-right: 10px;
+  position: relative;
+  bottom: 2px;
+}
+
+.section-title::after {
+  content: '';
+  display: block;
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, var(--text-muted), transparent);
+  margin-left: 20px;
+  opacity: 0.3;
+}
+
+/* Utilities */
+.text-primary { color: var(--primary); }
+.mono { font-family: var(--font-mono); }
+

@@ -1,0 +1,209 @@
+╔══════════════════════════════════════════════════════════════════════════╗
+║           📝 OÙ MODIFIER LE CODE - GUIDE VISUEL DÉTAILLÉ                 ║
+╚══════════════════════════════════════════════════════════════════════════╝
+
+📂 Fichier à modifier : src/components/Contact.js
+
+Vous devez modifier 3 lignes dans ce fichier. Voici exactement où :
+
+╔══════════════════════════════════════════════════════════════════════════╗
+║ MODIFICATION 1 : PUBLIC KEY (Ligne 44)                                  ║
+╚══════════════════════════════════════════════════════════════════════════╝
+
+📍 Cherchez cette ligne (ligne 44) :
+
+    const publicKey = process.env.REACT_APP_EMAILJS_PUBLIC_KEY || "YOUR_PUBLIC_KEY";
+
+🔧 Remplacez "YOUR_PUBLIC_KEY" par votre vraie clé :
+
+    const publicKey = process.env.REACT_APP_EMAILJS_PUBLIC_KEY || "AbCdEfGhIj1234567890";
+                                                                    ^^^^^^^^^^^^^^^^^^^^
+                                                                    Mettez VOTRE clé ici
+
+⚠️ IMPORTANT :
+   - Gardez les guillemets " "
+   - Ne mettez pas d'espaces avant ou après la clé
+   - La clé est sensible à la casse (majuscules/minuscules comptent)
+
+╔══════════════════════════════════════════════════════════════════════════╗
+║ MODIFICATION 2 : SERVICE ID (Ligne 72)                                  ║
+╚══════════════════════════════════════════════════════════════════════════╝
+
+📍 Cherchez cette ligne (ligne 72) :
+
+    process.env.REACT_APP_EMAILJS_SERVICE_ID || 'YOUR_SERVICE_ID',
+
+🔧 Remplacez 'YOUR_SERVICE_ID' par votre vraie clé :
+
+    process.env.REACT_APP_EMAILJS_SERVICE_ID || 'service_abc1234',
+                                                 ^^^^^^^^^^^^^^^^^
+                                                 Mettez VOTRE Service ID ici
+
+⚠️ IMPORTANT :
+   - Gardez les apostrophes ' '
+   - Gardez la virgule , à la fin
+   - Le Service ID commence toujours par "service_"
+
+╔══════════════════════════════════════════════════════════════════════════╗
+║ MODIFICATION 3 : TEMPLATE ID (Ligne 73)                                 ║
+╚══════════════════════════════════════════════════════════════════════════╝
+
+📍 Cherchez cette ligne (ligne 73) :
+
+    process.env.REACT_APP_EMAILJS_TEMPLATE_ID || 'YOUR_TEMPLATE_ID',
+
+🔧 Remplacez 'YOUR_TEMPLATE_ID' par votre vraie clé :
+
+    process.env.REACT_APP_EMAILJS_TEMPLATE_ID || 'template_xyz7890',
+                                                  ^^^^^^^^^^^^^^^^^^
+                                                  Mettez VOTRE Template ID ici
+
+⚠️ IMPORTANT :
+   - Gardez les apostrophes ' '
+   - Gardez la virgule , à la fin
+   - Le Template ID commence toujours par "template_"
+
+╔══════════════════════════════════════════════════════════════════════════╗
+║ EXEMPLE COMPLET AVANT/APRÈS                                             ║
+╚══════════════════════════════════════════════════════════════════════════╝
+
+┌──────────────────────────────────────────────────────────────────────────┐
+│ ❌ AVANT (avec les clés par défaut)                                      │
+└──────────────────────────────────────────────────────────────────────────┘
+
+  // Initialize EmailJS
+  useEffect(() => {
+    // Vous pouvez soit utiliser les variables d'environnement (recommandé)
+    // soit remplacer directement par vos clés
+    const publicKey = process.env.REACT_APP_EMAILJS_PUBLIC_KEY || "YOUR_PUBLIC_KEY";
+    emailjs.init(publicKey);
+  }, []);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setSubmitStatus(null);
+
+    try {
+      // Configuration EmailJS
+      const templateParams = {
+        from_name: formData.name,
+        from_email: formData.email,
+        subject: formData.subject,
+        message: formData.message,
+        to_email: 'lyna.can20@gmail.com'
+      };
+
+      await emailjs.send(
+        process.env.REACT_APP_EMAILJS_SERVICE_ID || 'YOUR_SERVICE_ID',
+        process.env.REACT_APP_EMAILJS_TEMPLATE_ID || 'YOUR_TEMPLATE_ID',
+        templateParams
+      );
+
+┌──────────────────────────────────────────────────────────────────────────┐
+│ ✅ APRÈS (avec VOS vraies clés)                                          │
+└──────────────────────────────────────────────────────────────────────────┘
+
+  // Initialize EmailJS
+  useEffect(() => {
+    // Vous pouvez soit utiliser les variables d'environnement (recommandé)
+    // soit remplacer directement par vos clés
+    const publicKey = process.env.REACT_APP_EMAILJS_PUBLIC_KEY || "AbCdEfGhIj1234567890";
+    emailjs.init(publicKey);
+  }, []);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setSubmitStatus(null);
+
+    try {
+      // Configuration EmailJS
+      const templateParams = {
+        from_name: formData.name,
+        from_email: formData.email,
+        subject: formData.subject,
+        message: formData.message,
+        to_email: 'lyna.can20@gmail.com'
+      };
+
+      await emailjs.send(
+        process.env.REACT_APP_EMAILJS_SERVICE_ID || 'service_abc1234',
+        process.env.REACT_APP_EMAILJS_TEMPLATE_ID || 'template_xyz7890',
+        templateParams
+      );
+
+╔══════════════════════════════════════════════════════════════════════════╗
+║ COMMENT OUVRIR ET MODIFIER LE FICHIER ?                                 ║
+╚══════════════════════════════════════════════════════════════════════════╝
+
+1️⃣  Ouvrez Visual Studio Code (ou votre éditeur de code)
+
+2️⃣  Ouvrez le fichier : src/components/Contact.js
+    - Vous pouvez le trouver dans l'explorateur de fichiers à gauche
+    - Ou utilisez Ctrl + P et tapez "Contact.js"
+
+3️⃣  Utilisez Ctrl + G pour aller à une ligne spécifique :
+    - Tapez "44" pour aller à la ligne 44
+    - Tapez "72" pour aller à la ligne 72
+    - Tapez "73" pour aller à la ligne 73
+
+4️⃣  Modifiez les 3 lignes avec vos vraies clés
+
+5️⃣  Sauvegardez avec Ctrl + S
+
+6️⃣  Le serveur va redémarrer automatiquement
+
+╔══════════════════════════════════════════════════════════════════════════╗
+║ VÉRIFICATION RAPIDE                                                      ║
+╚══════════════════════════════════════════════════════════════════════════╝
+
+Avant de sauvegarder, vérifiez que :
+
+✅ Vous avez bien 3 clés différentes (pas les mêmes)
+✅ La Public Key est entre guillemets " "
+✅ Le Service ID est entre apostrophes ' ' et commence par "service_"
+✅ Le Template ID est entre apostrophes ' ' et commence par "template_"
+✅ Il n'y a pas d'espaces avant ou après les clés
+✅ Les virgules , sont toujours présentes à la fin des lignes 72 et 73
+
+╔══════════════════════════════════════════════════════════════════════════╗
+║ APRÈS LA MODIFICATION                                                    ║
+╚══════════════════════════════════════════════════════════════════════════╝
+
+1. Sauvegardez le fichier (Ctrl + S)
+2. Attendez que le serveur redémarre (quelques secondes)
+3. Allez sur http://localhost:3000
+4. Scrollez jusqu'à la section Contact
+5. Testez le formulaire avec un message de test
+6. Vérifiez votre email lyna.can20@gmail.com
+
+╔══════════════════════════════════════════════════════════════════════════╗
+║ EN CAS D'ERREUR                                                          ║
+╚══════════════════════════════════════════════════════════════════════════╝
+
+Si vous voyez "Erreur lors de l'envoi" :
+
+1. Ouvrez la console du navigateur (F12)
+2. Allez dans l'onglet "Console"
+3. Essayez d'envoyer le formulaire
+4. Regardez les messages d'erreur en rouge
+5. Vérifiez que vos 3 clés sont correctes
+
+Erreurs courantes :
+- "Invalid public key" → Vérifiez votre Public Key (ligne 44)
+- "Service not found" → Vérifiez votre Service ID (ligne 72)
+- "Template not found" → Vérifiez votre Template ID (ligne 73)
+
+╔══════════════════════════════════════════════════════════════════════════╗
+║ BESOIN D'AIDE POUR RÉCUPÉRER VOS CLÉS ?                                 ║
+╚══════════════════════════════════════════════════════════════════════════╝
+
+📖 Consultez : CONFIGURATION_EMAILJS_DETAILLEE.md
+   → Guide complet avec toutes les étapes pour récupérer vos clés
+
+🚀 Ou double-cliquez sur : OUVRIR_EMAILJS.bat
+   → Ouvre automatiquement EmailJS et tous les guides
+
+📝 Notez vos clés dans : MES_CLES_EMAILJS.txt
+   → Aide-mémoire pour ne pas les perdre

@@ -1,0 +1,100 @@
+.floating-contact-bubble {
+    position: fixed;
+    bottom: 40px;
+    right: 40px;
+    width: 60px;
+    height: 60px;
+    background-color: var(--primary);
+    color: var(--bg-dark);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 5px 20px rgba(100, 255, 218, 0.3);
+    z-index: 1000;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    cursor: pointer;
+    text-decoration: none;
+    animation: floatPulse 3s infinite ease-in-out;
+}
+
+.floating-contact-bubble:hover {
+    transform: scale(1.1);
+    /* Removed rotate to keep it cleaner */
+    background-color: var(--text-main);
+    color: var(--bg-darker);
+    box-shadow: 0 8px 25px rgba(230, 241, 255, 0.5);
+    animation: none;
+    /* Stop pulse on hover */
+}
+
+.floating-contact-bubble svg {
+    width: 28px;
+    height: 28px;
+    fill: currentColor;
+    /* Allows filling the icon */
+    stroke: none;
+}
+
+/* Tooltip text */
+.tooltip {
+    position: absolute;
+    right: 80px;
+    background-color: var(--bg-light);
+    color: var(--primary);
+    padding: 8px 16px;
+    border-radius: 4px;
+    font-family: var(--font-mono);
+    font-size: 13px;
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateX(10px);
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(2, 12, 27, 0.7);
+    border: 1px solid var(--primary);
+}
+
+.floating-contact-bubble:hover .tooltip {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(0);
+}
+
+@keyframes floatPulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(100, 255, 218, 0.4);
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-6px);
+    }
+
+    70% {
+        box-shadow: 0 0 0 15px rgba(100, 255, 218, 0);
+    }
+
+    100% {
+        box-shadow: 0 0 0 0 rgba(100, 255, 218, 0);
+        transform: translateY(0);
+    }
+}
+
+@media (max-width: 768px) {
+    .floating-contact-bubble {
+        bottom: 20px;
+        right: 20px;
+        width: 50px;
+        height: 50px;
+    }
+
+    .floating-contact-bubble svg {
+        width: 24px;
+        height: 24px;
+    }
+
+    .tooltip {
+        display: none;
+    }
+}

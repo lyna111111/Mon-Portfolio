@@ -1,0 +1,83 @@
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 0 50px;
+    height: var(--nav-height);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1000;
+    background: rgba(10, 25, 47, 0.85);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 10px 30px -10px rgba(2, 12, 27, 0.7);
+    transition: all 0.3s ease;
+}
+
+.logo a {
+    font-family: var(--font-mono);
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--primary);
+    border: 2px solid var(--primary);
+    padding: 5px 10px;
+    border-radius: 4px;
+}
+
+.logo a:hover {
+    background: rgba(100, 255, 218, 0.1);
+}
+
+.nav-links {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+}
+
+.nav-link {
+    font-family: var(--font-mono);
+    font-size: 0.9rem;
+    color: var(--text-main);
+    position: relative;
+    cursor: pointer;
+}
+
+.nav-link span {
+    color: var(--primary);
+    margin-right: 5px;
+}
+
+.nav-link:hover {
+    color: var(--primary);
+}
+
+.nav-btn .resume-btn {
+    color: var(--primary);
+    background: transparent;
+    border: 1px solid var(--primary);
+    border-radius: 4px;
+    padding: 0.75rem 1rem;
+    font-family: var(--font-mono);
+    font-size: 0.9rem;
+    line-height: 1;
+    text-decoration: none;
+    cursor: pointer;
+    transition: var(--transition);
+    margin-left: 15px;
+}
+
+.resume-btn:hover {
+    background: rgba(100, 255, 218, 0.1);
+}
+
+@media (max-width: 768px) {
+    .navbar {
+        padding: 0 25px;
+    }
+
+    .nav-links {
+        display: none;
+        /* Mobile menu implementation usually requires state, for now simpler */
+    }
+}
