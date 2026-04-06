@@ -1,20 +1,10 @@
 import React, { useState, useEffect, useRef } from 'react';
-import emailjs from '@emailjs/browser';
 import './Contact.css';
 
 const Contact = () => {
   const [isVisible, setIsVisible] = useState(false);
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    subject: '',
-    message: ''
-  });
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitStatus, setSubmitStatus] = useState(null); // 'success' or 'error'
   const [isHovered, setIsHovered] = useState(false);
   const sectionRef = useRef(null);
-  const formRef = useRef(null);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -37,58 +27,7 @@ const Contact = () => {
     };
   }, []);
 
-  // Initialize EmailJS
-  useEffect(() => {
-    // Vous pouvez soit utiliser les variables d'environnement (recommandé)
-    // soit remplacer directement par vos clés
-    const publicKey = process.env.REACT_APP_EMAILJS_PUBLIC_KEY || "YOUR_PUBLIC_KEY";
-    emailjs.init(publicKey);
-  }, []);
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({
-      ...prev,
-      [name]: value
-    }));
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-    setSubmitStatus(null);
-
-    try {
-      // Configuration EmailJS
-      const templateParams = {
-        from_name: formData.name,
-        from_email: formData.email,
-        subject: formData.subject,
-        message: formData.message,
-        to_email: 'lyna.can20@gmail.com'
-      };
-
-      await emailjs.send(
-        process.env.REACT_APP_EMAILJS_SERVICE_ID || 'YOUR_SERVICE_ID',
-        process.env.REACT_APP_EMAILJS_TEMPLATE_ID || 'YOUR_TEMPLATE_ID',
-        templateParams
-      );
-
-      setSubmitStatus('success');
-      setFormData({
-        name: '',
-        email: '',
-        subject: '',
-        message: ''
-      });
-    } catch (error) {
-      console.error('Erreur lors de l\'envoi:', error);
-      setSubmitStatus('error');
-    } finally {
-      setIsSubmitting(false);
-      setTimeout(() => setSubmitStatus(null), 5000);
-    }
-  };
+  // Logic for direct email replaced form
 
   const socialLinks = [
     {
@@ -119,7 +58,7 @@ const Contact = () => {
           <polyline points="22,6 12,13 2,6"></polyline>
         </svg>
       ),
-      url: 'mailto:lyna.can20@gmail.com',
+      url: 'mailto:lma451898@gmail.com',
       color: '#ea4335'
     }
   ];
@@ -165,7 +104,7 @@ const Contact = () => {
                 </div>
                 <div className="detail-content">
                   <span className="detail-label">Email</span>
-                  <span className="detail-value">lyna.can20@gmail.com</span>
+                  <span className="detail-value">lma451898@gmail.com</span>
                 </div>
               </div>
 
@@ -225,144 +164,32 @@ const Contact = () => {
                 </div>
 
                 <h3 className="cta-title">Prêt à démarrer un projet ?</h3>
-                <p className="cta-description">
-                  Remplissez le formulaire ci-dessous et je vous répondrai dans les plus brefs délais.
+                <p className="cta-description" style={{ marginBottom: '30px' }}>
+                  Je suis toujours disponible pour discuter de nouveaux projets et opportunités. 
+                  Envoyez-moi un email et je vous répondrai dans les plus brefs délais !
                 </p>
 
-                <form ref={formRef} onSubmit={handleSubmit} className="contact-form">
-                  <div className="form-group">
-                    <label htmlFor="name" className="form-label">
-                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-                        <circle cx="12" cy="7" r="4"></circle>
-                      </svg>
-                      Nom complet
-                    </label>
-                    <input
-                      type="text"
-                      id="name"
-                      name="name"
-                      value={formData.name}
-                      onChange={handleChange}
-                      required
-                      placeholder="Votre nom"
-                      className="form-input"
-                    />
-                  </div>
-
-                  <div className="form-group">
-                    <label htmlFor="email" className="form-label">
-                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
-                        <polyline points="22,6 12,13 2,6"></polyline>
-                      </svg>
-                      Email
-                    </label>
-                    <input
-                      type="email"
-                      id="email"
-                      name="email"
-                      value={formData.email}
-                      onChange={handleChange}
-                      required
-                      placeholder="votre.email@exemple.com"
-                      className="form-input"
-                    />
-                  </div>
-
-                  <div className="form-group">
-                    <label htmlFor="subject" className="form-label">
-                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
-                      </svg>
-                      Sujet
-                    </label>
-                    <input
-                      type="text"
-                      id="subject"
-                      name="subject"
-                      value={formData.subject}
-                      onChange={handleChange}
-                      required
-                      placeholder="Sujet de votre message"
-                      className="form-input"
-                    />
-                  </div>
-
-                  <div className="form-group">
-                    <label htmlFor="message" className="form-label">
-                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
-                      </svg>
-                      Message
-                    </label>
-                    <textarea
-                      id="message"
-                      name="message"
-                      value={formData.message}
-                      onChange={handleChange}
-                      required
-                      rows="5"
-                      placeholder="Décrivez votre projet ou votre demande..."
-                      className="form-textarea"
-                    ></textarea>
-                  </div>
-
-                  {submitStatus === 'success' && (
-                    <div className="form-message success">
-                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                        <polyline points="20 6 9 17 4 12"></polyline>
-                      </svg>
-                      Message envoyé avec succès ! Je vous répondrai bientôt.
-                    </div>
-                  )}
-
-                  {submitStatus === 'error' && (
-                    <div className="form-message error">
-                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                        <circle cx="12" cy="12" r="10"></circle>
-                        <line x1="12" y1="8" x2="12" y2="12"></line>
-                        <line x1="12" y1="16" x2="12.01" y2="16"></line>
-                      </svg>
-                      Erreur lors de l'envoi. Veuillez réessayer ou m'envoyer un email directement.
-                    </div>
-                  )}
-
-                  <button
-                    type="submit"
-                    className="cta-button"
-                    disabled={isSubmitting}
-                    onMouseEnter={() => setIsHovered(true)}
-                    onMouseLeave={() => setIsHovered(false)}
+                <a 
+                  href="mailto:lma451898@gmail.com" 
+                  className="cta-button" 
+                  style={{ display: 'inline-flex', textDecoration: 'none', justifyContent: 'center' }}
+                  onMouseEnter={() => setIsHovered(true)}
+                  onMouseLeave={() => setIsHovered(false)}
+                >
+                  <span className="button-text">
+                    M'envoyer un email
+                  </span>
+                  <svg
+                    className={`button-icon ${isHovered ? 'hovered' : ''}`}
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
                   >
-                    <span className="button-text">
-                      {isSubmitting ? 'Envoi en cours...' : 'Envoyer le message'}
-                    </span>
-                    <svg
-                      className={`button-icon ${isHovered ? 'hovered' : ''}`}
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                    >
-                      {isSubmitting ? (
-                        <circle cx="12" cy="12" r="10" className="spinner"></circle>
-                      ) : (
-                        <>
-                          <line x1="5" y1="12" x2="19" y2="12"></line>
-                          <polyline points="12 5 19 12 12 19"></polyline>
-                        </>
-                      )}
-                    </svg>
-                  </button>
-                </form>
-
-                <div className="cta-note">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                    <polyline points="20 6 9 17 4 12"></polyline>
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                    <polyline points="12 5 19 12 12 19"></polyline>
                   </svg>
-                  <span>Réponse garantie sous 24h</span>
-                </div>
+                </a>
               </div>
             </div>
           </div>
