@@ -8,6 +8,7 @@ import './Projects.css';
 
 const Projects = () => {
   const [isVisible, setIsVisible] = useState(false);
+  // eslint-disable-next-line no-unused-vars
   const [hoveredProject, setHoveredProject] = useState(null);
   const sectionRef = useRef(null);
 
@@ -51,6 +52,7 @@ const Projects = () => {
 
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [modalProject, modalImageIndex]);
 
   const projects = [
@@ -154,6 +156,7 @@ const Projects = () => {
   ];
 
   useEffect(() => {
+    const currentSectionRef = sectionRef.current;
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -163,13 +166,13 @@ const Projects = () => {
       { threshold: 0.1 }
     );
 
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
+    if (currentSectionRef) {
+      observer.observe(currentSectionRef);
     }
 
     return () => {
-      if (sectionRef.current) {
-        observer.unobserve(sectionRef.current);
+      if (currentSectionRef) {
+        observer.unobserve(currentSectionRef);
       }
       document.body.style.overflow = 'auto'; // Cleanup
     };

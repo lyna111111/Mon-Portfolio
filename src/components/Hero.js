@@ -1,17 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import './Hero.css';
 
+const roles = [
+  "Développeuse Web Full-Stack",
+  "Créatrice d'Expériences Digitales",
+  "Architecte Front-End"
+];
+
 const Hero = () => {
   const [text, setText] = useState('');
   const [isDeleting, setIsDeleting] = useState(false);
   const [loopNum, setLoopNum] = useState(0);
   const [typingSpeed, setTypingSpeed] = useState(150);
-
-  const roles = [
-    "Développeuse Web Full-Stack",
-    "Créatrice d'Expériences Digitales",
-    "Architecte Front-End"
-  ];
 
   useEffect(() => {
     const handleTyping = () => {
@@ -36,7 +36,8 @@ const Hero = () => {
 
     const timer = setTimeout(handleTyping, typingSpeed);
     return () => clearTimeout(timer);
-  }, [text, isDeleting, loopNum, typingSpeed, roles]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [text, isDeleting, loopNum, typingSpeed]);
 
   return (
     <section id="hero" className="hero">

@@ -19,13 +19,10 @@ const About = () => {
     { name: 'Vite.js', level: 85, color: '#646cff' }
   ];
 
-  const experiences = [
-    { year: '2023-2024', title: 'Développeuse Full-Stack', company: 'Projets Freelance' },
-    { year: '2022-2023', title: 'Développeuse Web', company: 'Agence Digitale' },
-    { year: '2021-2022', title: 'Junior Developer', company: 'Startup Tech' }
-  ];
+  // Removed unused experiences array
 
   useEffect(() => {
+    const currentSectionRef = sectionRef.current;
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -35,13 +32,13 @@ const About = () => {
       { threshold: 0.1 }
     );
 
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
+    if (currentSectionRef) {
+      observer.observe(currentSectionRef);
     }
 
     return () => {
-      if (sectionRef.current) {
-        observer.unobserve(sectionRef.current);
+      if (currentSectionRef) {
+        observer.unobserve(currentSectionRef);
       }
     };
   }, []);
@@ -56,7 +53,7 @@ const About = () => {
           <div className="about-content">
             <div className="about-text-wrapper">
               <div className="code-line">
-                <span className="code-comment">// Qui suis-je ?</span>
+                <span className="code-comment">{"// Qui suis-je ?"}</span>
               </div>
               <div className="code-line">
                 <span className="code-keyword">const</span> <span className="code-variable">developer</span> = {'{'}
