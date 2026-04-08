@@ -37,11 +37,9 @@ const Navbar = () => {
       </div>
 
       <div className={`menu-toggle ${isOpen ? 'open' : ''}`} onClick={toggleMenu}>
-        <div className="hamburger">
-          <span></span>
-          <span></span>
-          <span></span>
-        </div>
+        <span></span>
+        <span></span>
+        <span></span>
       </div>
 
       <div className={`nav-links ${isOpen ? 'open' : ''}`}>

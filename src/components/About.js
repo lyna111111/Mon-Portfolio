@@ -16,7 +16,11 @@ const About = () => {
     { name: 'HTML5', level: 95, color: '#e34f26' },
     { name: 'PostgreSQL', level: 80, color: '#336791' },
     { name: 'Java', level: 75, color: '#007396' },
-    { name: 'Vite.js', level: 85, color: '#646cff' }
+    { name: 'Vite.js', level: 85, color: '#646cff' },
+    { name: 'CI/CD (GitHub Actions)', level: 82, color: '#2088ff' },
+    { name: 'Docker', level: 78, color: '#2496ed' },
+    { name: 'Vercel / Netlify', level: 90, color: '#00c7b7' },
+    { name: 'Git', level: 92, color: '#f05032' }
   ];
 
   // Removed unused experiences array
@@ -65,7 +69,10 @@ const About = () => {
                 <span className="code-property">role:</span> <span className="code-string">"Full-Stack Developer"</span>,
               </div>
               <div className="code-line indent">
-                <span className="code-property">passion:</span> <span className="code-string">"Créer des expériences web exceptionnelles"</span>
+                <span className="code-property">passion:</span> <span className="code-string">"Créer des expériences web exceptionnelles"</span>,
+              </div>
+              <div className="code-line indent">
+                <span className="code-property">deploy:</span> <span className="code-string">"CI/CD · Docker · Vercel · GitHub Actions"</span>
               </div>
               <div className="code-line">
                 {'}'};
@@ -79,9 +86,10 @@ const About = () => {
                 sensibilité design pour créer des solutions qui font la différence.
               </p>
               <p>
-                Spécialisée dans le développement full-stack, j'ai eu l'opportunité de travailler sur
-                des projets variés allant de sites e-commerce complexes à des applications web modernes.
-                Chaque projet est une nouvelle aventure où je peux repousser les limites du possible.
+                Spécialisée dans le développement full-stack, j'assure également le déploiement complet
+                de mes projets via des pipelines <strong className="ci-highlight">CI/CD</strong> automatisés —
+                GitHub Actions, Docker, Vercel et Netlify — garantissant des livraisons fiables,
+                rapides et sans interruption.
               </p>
             </div>
           </div>
